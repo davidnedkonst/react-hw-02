@@ -1,13 +1,15 @@
-export default function Statistics({ good, neutral, bad, total, positivePercentage }) {
-    const stringPositivePercentage = `${positivePercentage.toPrecision(2)}%`;
+import StatisticsItem from "../StatisticsItem";
 
+export default function Statistics({ options }) {
     return (
-        <div>
-            <p>Good: <span>{good}</span></p>
-            <p>Neutral: <span>{neutral}</span></p>
-            <p>Bad: <span>{bad}</span></p>
-            <p>Total: <span>{total}</span></p>
-            <p>Positive feedback: <span>{stringPositivePercentage}</span></p>
-        </div>
+        <div>{
+            options.map(item =>
+                <StatisticsItem
+                    key={item.name}
+                    name={item.name}
+                    value={item.value}
+                />
+            )
+        }</div>
     );
 };

@@ -3,69 +3,62 @@ import Statistics from "../Statistics";
 import FeedbackOptions from "../FeedbackOptions";
 import Section from "../Section";
 
+import FirstToUpperCase from "../../utils/FirstToUpperCase";
+
 export default class Feedback extends React.Component {
     state = {
-        good: 0,
-        neutral: 0,
-        bad: 0,
+        good: 5,
+        neutral: 20,
+        bad: 10,
     };
 
-    onGoodLike = () => {
-        this.setState(prevState => ({
-            good: prevState.good + 1,
-            neutral: prevState.neutral,
-            bad: prevState.bad,
-        }))
+    stateToArray = () => {
+        const stateObject = this.state;
+        const array = [];
+        for (const key in stateObject) {
+            array.push({ name: key, value: stateObject[key] });
+        };
+        return array;
+    }
+
+    updateState = name => {
+        // this.setState(prevState => prevState[name] + 1);
     };
 
-    onNeutralLike = () => {
-        this.setState(prevState => ({
-            good: prevState.good,
-            neutral: prevState.neutral + 1,
-            bad: prevState.bad,
-        }))
-    };
-
-    onBadLike = () => {
-        this.setState(prevState => ({
-            good: prevState.good,
-            neutral: prevState.neutral,
-            bad: prevState.bad + 1,
-        }))
-    };
-
-    countTotalFeedback = () => {
-        const { good, neutral, bad } = this.state;
-        return good + neutral + bad;
+    totalFeedback = () => {
+        const array = this.stateToArray();
+        const total = array.reduce((acc, item) => (acc + item.value), 0);
+        return total;
     };
 
     positivePercentage = () => {
         const { good } = this.state;
-        const total = this.countTotalFeedback();
+        const total = this.totalFeedback();
         const positivePercentage = total === 0 ? 0 : good / total * 100;
-        return positivePercentage;
+        return positivePercentage.toPrecision(2) + '%';
     };
 
-    render() {
-        const { good, neutral, bad } = this.state;
-        const total = this.countTotalFeedback();
-        const positivePercentage = this.positivePercentage();
+    makeStatisticsData = () => {
+        const array = this.stateToArray();
+        array.push({ name: 'Total', value: this.totalFeedback() });
+        array.push({ name: 'Positive feedback', value: this.positivePercentage() });
+        return (array);
+    }
 
+    render() {
         return (
             <div>
                 <Section title={'Please leave feedback'}>
-                    <FeedbackOptions options={this.state} />
-                </Section>
-                
-                <Section title={'Statistics'}>
-                    <Statistics
-                        good={good}
-                        neutral={neutral}
-                        bad={bad}
-                        total={total}
-                        positivePercentage={positivePercentage}
+                    <FeedbackOptions
+                        options={this.stateToArray()}
+                        onLeaveFeedback={this.updateState}
                     />
                 </Section>
+
+                <Section title={'Statistics'}>
+                    <Statistics options={this.makeStatisticsData()} />
+                </Section>
+                <div>{ }</div>
             </div>
         );
     };
