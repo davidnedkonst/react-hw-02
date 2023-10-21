@@ -1,5 +1,5 @@
 import './App.css';
-import Feedback from './components/Feedback/Feedback';
+import Feedback from './FeedbackApp/Feedback';
 
 export default function App() {
   return (
