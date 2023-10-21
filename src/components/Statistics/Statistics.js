@@ -3,11 +3,11 @@ import StatisticsItem from "../StatisticsItem";
 export default function Statistics({ options }) {
     return (
         <div>{
-            options.map(item =>
+            options.map(({ name, value }) =>
                 <StatisticsItem
-                    key={item.name}
-                    name={item.name}
-                    value={item.value}
+                    key={name}
+                    name={name}
+                    value={value}
                 />
             )
         }</div>
