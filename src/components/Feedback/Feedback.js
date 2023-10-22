@@ -1,5 +1,5 @@
 import React from "react";
-import Statistics ;
+import Statistics from "../Statistics";
 import FeedbackOptions from "../FeedbackOptions";
 import Section from "../Section";
 
