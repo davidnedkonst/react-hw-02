@@ -58,7 +58,6 @@ export default class Feedback extends React.Component {
                 <Section title={'Statistics'}>
                     <Statistics options={this.makeStatisticsData()} />
                 </Section>
-                <div>{ }</div>
             </div>
         );
     };

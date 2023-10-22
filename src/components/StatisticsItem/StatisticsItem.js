@@ -1,4 +1,4 @@
-import FirstToUpperCase from "../../../utils/FirstToUpperCase";
+import FirstToUpperCase from "../../utils/FirstToUpperCase";
 
 export default function StatisticsItem({ name, value }) {
     return (

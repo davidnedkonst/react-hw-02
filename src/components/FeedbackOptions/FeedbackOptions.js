@@ -1,7 +1,6 @@
-import FirstToUpperCase from "../../../utils/FirstToUpperCase";
+import FirstToUpperCase from "../../utils/FirstToUpperCase.js";
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
-
     return (
         <div>{
             options.map(({ name }) =>
