@@ -1,7 +1,8 @@
-export default function InputForm() {
+export default function InputForm({ title, type, value }) {
     return (
         <div>
-            InputForm
+            <p>{title}</p>
+            <input type={type} value={value} />
         </div>
     );
 }

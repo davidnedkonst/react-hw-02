@@ -1,7 +1,11 @@
+import Section from "../Section";
+
 export default function Contacts() {
     return (
         <div>
-            Contacts
+            <Section title='Contacts'>
+                Contacts
+            </Section>
         </div>
     );
 }
