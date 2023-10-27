@@ -2,13 +2,15 @@ import FirstToUpperCase from "../../utils/FirstToUpperCase.js";
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
     return (
-        <div>{
-            options.map(({ name }) =>
+        <div className="FeedbackOptions">{
+            Object.keys(options).map(option =>
                 <button
-                    key={name}
-                    onClick={() => onLeaveFeedback(name)}
-                >{FirstToUpperCase(name)}</button>
+                    key={option}
+                    className="FeedbackOption__button"
+                    onClick={() => onLeaveFeedback(option)}
+                >{FirstToUpperCase(option)}
+                </button>
             )
         }</div>
     );
-}
+};
