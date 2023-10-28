@@ -1,23 +1,47 @@
 import React from "react";
-import InputForm from "../Input";
-import Contacts from "../Contacts";
+import Section from "../Section";
+import ContactForm from "../ContactForm";
+import ContactFilter from "../ContactFilter";
+import ContactList from "../ContactList";
+import { initialContacts } from "../../constants/initialContacts";
+import { nanoid } from "nanoid";
 
 export default class Phonebook extends React.Component {
     state = {
-        contacts: [
-            {
-                'name': '0',
-                'tel': '0',
-            }
-        ]
+        'contacts': initialContacts,
+        'name': '',
+        'tel': '',
+    };
+
+    addContact = contact => {
+        contact.id = nanoid();
+        this.setState(({ contacts }) => (
+            { 'contacts': [...contacts, contact] }
+        ));
+    };
+
+    deleteContact = deleteId => {
+        this.setState(({contacts}) => (
+            { 'contacts': contacts.filter(({ id }) => (id !== deleteId)) }
+        ))
     };
 
     render() {
         return (
             <div>
-                <InputForm />
-                <Contacts />
+                <Section title='ContactForm'>
+                    <ContactForm onSubmit={this.addContact} />
+                </Section>
+                <Section title='Filter'>
+                    <ContactFilter />
+                </Section>
+                <Section title='Contacts'>
+                    <ContactList
+                        contacts={this.state.contacts}
+                        onDelete={this.deleteContact}
+                    />
+                </Section>
             </div>
         );
     };
-}
+};
