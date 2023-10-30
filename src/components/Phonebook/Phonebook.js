@@ -15,7 +15,7 @@ export default class Phonebook extends React.Component {
 
     addContact = ({ name, tel }) => {
         if (this.state.contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
-            alert(FirstToUpperCase(name) + ' is already in contacts.');
+            alert(`${FirstToUpperCase(name)} is already in contacts.`);
             return;
         };
 
@@ -25,9 +25,7 @@ export default class Phonebook extends React.Component {
             id: nanoid(),
         };
 
-        this.setState(({ contacts }) => (
-            { 'contacts': [newContact, ...contacts] }
-        ));
+        this.setState(({ contacts }) => ({ 'contacts': [newContact, ...contacts] }));
     };
 
     deleteContact = deleteId => {
