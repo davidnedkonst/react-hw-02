@@ -13,12 +13,18 @@ export default class Phonebook extends React.Component {
         'filter': '',
     };
 
-    addContact = contact => {
+    addContact = ({ name, tel }) => {
+        if (this.state.contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
+            alert(FirstToUpperCase(name) + ' is already in contacts.');
+            return;
+        };
+
         const newContact = {
-            name: FirstToUpperCase(contact.name),
-            tel: toNumber(contact.tel),
+            name: FirstToUpperCase(name),
+            tel: toNumber(tel),
             id: nanoid(),
         };
+
         this.setState(({ contacts }) => (
             { 'contacts': [newContact, ...contacts] }
         ));
