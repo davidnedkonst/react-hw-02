@@ -1,5 +1,5 @@
 import React from "react";
-import StatisticsItem from "../StatisticsItem";
+import ListItem from "../ListItem";
 
 export default class Statistics extends React.Component {
     totalFeedback = () => {
@@ -31,7 +31,7 @@ export default class Statistics extends React.Component {
                 {
                     !isEmpty
                         ? Object.keys(statisticsDat).map(name =>
-                            <StatisticsItem
+                            <ListItem
                                 key={name}
                                 name={name}
                                 value={statisticsDat[name]}

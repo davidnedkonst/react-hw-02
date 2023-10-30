@@ -1,4 +1,4 @@
-import StatisticsItem from "../StatisticsItem";
+import ListItem from "../ListItem";
 
 export default function ContactList({ contacts, onDelete }) {
     return (
@@ -6,7 +6,7 @@ export default function ContactList({ contacts, onDelete }) {
             {
                 contacts.map(({ id, name, tel }) =>
                     <li key={id}>
-                        <StatisticsItem name={name} value={tel} />
+                        <ListItem name={name} value={tel} />
                         <button onClick={() => onDelete(id)}>Delete</button>
                     </li>
                 )

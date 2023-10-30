@@ -1,14 +1,14 @@
 import React from "react";
 import { nanoid } from "nanoid";
 
-const initState = { 'name': '', 'tel': '' };
+const initState = { name: '', tel: '' };
 
 export default class ContactForm extends React.Component {
     state = initState;
 
     id = {
-        'inputNameId': nanoid(),
-        'inputTelId': nanoid(),
+        inputNameId: nanoid(),
+        inputTelId: nanoid(),
     };
 
     onChange = event => {
@@ -40,8 +40,8 @@ export default class ContactForm extends React.Component {
                         name="name"
                         value={name}
                         onChange={this.onChange}
-                        required 
-                        
+                        required
+
                     />
 
                     <label htmlFor={inputTelId}>Number</label>
@@ -51,8 +51,8 @@ export default class ContactForm extends React.Component {
                         name="tel"
                         value={tel}
                         onChange={this.onChange}
-                        required 
-                        
+                        required
+
                     />
 
                     <button type="submit">Add contact</button>

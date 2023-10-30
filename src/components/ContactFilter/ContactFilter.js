@@ -1,16 +1,15 @@
 import React from "react";
 
 export default class ContactFilter extends React.Component {
-    state = { 'name': '', 'tel': '', };
-
     render() {
+        const { value } = this.props.value;
         return (
             <form>
                 <label>
                     Find contact
-                    <input type="tel"/>
+                    <input type="text" value={value} onChange={this.props.onChange} />
                 </label>
             </form>
         );
     };
-}
+};
