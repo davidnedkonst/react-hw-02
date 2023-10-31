@@ -2,7 +2,7 @@ import React from "react";
 
 export default class ContactFilter extends React.Component {
     render() {
-        const { value } = this.props.value;
+        const { value } = this.props;
         return (
             <form>
                 <label>

@@ -16,7 +16,7 @@ export default class Statistics extends React.Component {
     };
 
     makeStatData = () => {
-        const total = { 'total': this.totalFeedback(), };
+        const total = { total: this.totalFeedback(), };
         const positive = { 'positive feedback': this.positivePercentage(), };
         return { ...this.props.options, ...total, ...positive };
     };
@@ -25,12 +25,13 @@ export default class Statistics extends React.Component {
         const msgEmpty = "No feedback give";
         const isEmpty = !this.totalFeedback();
         const statisticsDat = this.makeStatData();
+        const statisticsDatKeys = Object.keys(statisticsDat);
 
         return (
             <div>
                 {
                     !isEmpty
-                        ? Object.keys(statisticsDat).map(name =>
+                        ? statisticsDatKeys.map(name =>
                             <ListItem
                                 key={name}
                                 name={name}

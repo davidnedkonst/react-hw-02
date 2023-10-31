@@ -9,8 +9,8 @@ import { nanoid } from "nanoid";
 
 export default class Phonebook extends React.Component {
     state = {
-        'contacts': initialContacts,
-        'filter': '',
+        contacts: initialContacts,
+        filter: '',
     };
 
     addContact = ({ name, tel }) => {
@@ -25,18 +25,19 @@ export default class Phonebook extends React.Component {
             id: nanoid(),
         };
 
-        this.setState(({ contacts }) => ({ 'contacts': [newContact, ...contacts] }));
+        this.setState(({ contacts }) => ({ contacts: [newContact, ...contacts] }));
     };
 
     deleteContact = deleteId => {
         this.setState(({ contacts }) => (
-            { 'contacts': contacts.filter(({ id }) => (id !== deleteId)) }
+            { contacts: contacts.filter(({ id }) => (id !== deleteId)) }
         ))
     };
 
     onContactFilterChange = event => {
+        const { value } = event.target;
         this.setState(
-            { filter: event.target.value.toLowerCase() }
+            { filter: value.toLowerCase() }
         );
     };
 
