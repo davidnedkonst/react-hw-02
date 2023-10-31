@@ -1,6 +1,7 @@
 import './App.css';
 import Feedback from '../Feedback';
 import Phonebook from '../Phonebook';
+import Images from '../Images/Images';
 
 
 export default function App() {
@@ -13,6 +14,9 @@ export default function App() {
 
       <h2>2. Phonebook</h2>
       <Phonebook />
+
+      <h2>3. Images</h2>
+      <Images/>
     </div>
   );
 };
