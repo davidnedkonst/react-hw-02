@@ -14,13 +14,15 @@ export default class Phonebook extends React.Component {
     };
 
     addContact = ({ name, tel }) => {
+        const Name = FirstToUpperCase(name);
+
         if (this.state.contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) {
-            alert(`${FirstToUpperCase(name)} is already in contacts.`);
+            alert(`${Name} is already in contacts.`);
             return;
         };
 
         const newContact = {
-            name: FirstToUpperCase(name),
+            name: Name,
             tel: toNumber(tel),
             id: nanoid(),
         };

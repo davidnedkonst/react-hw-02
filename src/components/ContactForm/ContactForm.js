@@ -1,64 +1,38 @@
 import React from "react";
+import { Formik, Form, Field } from "formik";
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 
-const initState = { name: '', tel: '' };
-
 export default class ContactForm extends React.Component {
-    state = initState;
-
-    id = {
-        inputNameId: nanoid(),
-        inputTelId: nanoid(),
-    };
-
-    onChange = event => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value, });
-    }
-
-    onSubmit = event => {
-        event.preventDefault();
-        this.props.onSubmit(this.state);
-        this.reset();
-    };
-
-    reset = () => {
-        this.setState(initState);
+    onSubmit = (values, { resetForm }) => {
+        this.props.onSubmit(values);
+        resetForm();
     };
 
     render() {
-        const { name, tel } = this.state;
-        const { inputNameId, inputTelId } = this.id;
-
         return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <label htmlFor={inputNameId}>Name</label>
-                    <input
-                        id={inputNameId}
+            <Formik
+                initialValues={{ name: '', tel: '' }}
+                onSubmit={this.onSubmit}
+            >
+                <Form>
+                    <label htmlFor="name">Name</label>
+                    <Field
                         type="text"
                         name="name"
-                        value={name}
-                        onChange={this.onChange}
                         required
-
                     />
 
-                    <label htmlFor={inputTelId}>Number</label>
-                    <input
-                        id={inputTelId}
+                    <label htmlFor="tel">Number</label>
+                    <Field
                         type="tel"
                         name="tel"
-                        value={tel}
-                        onChange={this.onChange}
                         required
-
                     />
 
                     <button type="submit">Add contact</button>
-                </form>
-            </div>
+                </Form>
+            </Formik>
         );
     };
 
