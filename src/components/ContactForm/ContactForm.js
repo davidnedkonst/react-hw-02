@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 
 export default class ContactForm extends React.Component {
@@ -35,7 +34,6 @@ export default class ContactForm extends React.Component {
             </Formik>
         );
     };
-
 };
 
 ContactForm.propTypes = {
