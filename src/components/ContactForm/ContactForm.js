@@ -1,5 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
+import PropTypes from 'prop-types';
 
 const initState = { name: '', tel: '' };
 
@@ -61,4 +62,8 @@ export default class ContactForm extends React.Component {
         );
     };
 
+};
+
+ContactForm.propTypes = {
+    onSubmit: PropTypes.func,
 };

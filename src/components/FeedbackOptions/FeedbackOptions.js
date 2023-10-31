@@ -1,4 +1,5 @@
 import FirstToUpperCase from "../../utils/FirstToUpperCase.js";
+import PropTypes from 'prop-types';
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
     const optionKeys = Object.keys(options);
@@ -15,4 +16,13 @@ export default function FeedbackOptions({ options, onLeaveFeedback }) {
             )
         }</div>
     );
+};
+
+FeedbackOptions.protoTypes = {
+    options: PropTypes.shape({
+        good: PropTypes.number,
+        neutral: PropTypes.number,
+        bad: PropTypes.number,
+    }),
+    onLeaveFeedback: PropTypes.func
 };

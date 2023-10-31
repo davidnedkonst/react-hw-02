@@ -1,5 +1,6 @@
 import React from "react";
 import ListItem from "../ListItem";
+import PropTypes from 'prop-types';
 
 export default class Statistics extends React.Component {
     totalFeedback = () => {
@@ -43,4 +44,12 @@ export default class Statistics extends React.Component {
             </div>
         );
     };
+};
+
+Statistics.protoTypes = {
+    options: PropTypes.shape({
+        good: PropTypes.number,
+        neutral: PropTypes.number,
+        bad: PropTypes.number,
+    }),
 };

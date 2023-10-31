@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import FirstToUpperCase from "../../utils/FirstToUpperCase";
+import PropTypes from 'prop-types';
 
 export default function ListItem({ name, value }) {
     return (
@@ -11,5 +11,8 @@ export default function ListItem({ name, value }) {
 
 ListItem.propTypes = {
     name: PropTypes.string.isRequired,
-    // value: PropTypes.number.isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 export default class ContactFilter extends React.Component {
     render() {
@@ -12,4 +13,9 @@ export default class ContactFilter extends React.Component {
             </form>
         );
     };
+};
+
+ContactFilter.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func,
 };

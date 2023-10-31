@@ -1,4 +1,5 @@
 import ListItem from "../ListItem";
+import PropTypes from 'prop-types';
 
 export default function ContactList({ contacts, onDelete }) {
     return (
@@ -13,4 +14,15 @@ export default function ContactList({ contacts, onDelete }) {
             }
         </ul>
     );
+};
+
+ContactList.propTypes = {
+    contacts: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+            tel: PropTypes.string,
+        })
+    ),
+    onDelete: PropTypes.func,
 };
