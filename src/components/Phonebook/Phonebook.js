@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../Section";
-import ContactForm from "../ContactForm/ContactForm";
+import ContactForm from "../ContactForm";
 import ContactFilter from "../ContactFilter";
 import ContactList from "../ContactList";
 import { FirstToUpperCase, isName, toNumber } from "../../utils";
