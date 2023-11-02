@@ -9,9 +9,28 @@ import { nanoid } from "nanoid";
 
 export default class Phonebook extends React.Component {
     state = {
-        contacts: initialContacts,
+        contacts: [...initialContacts],
         filter: '',
     };
+
+    componentDidMount() {
+        console.log('Phonebook did mount');  
+
+        const localeContacts = JSON.parse(localStorage.getItem("contacts"));
+        if (localeContacts.length) this.setState({ contacts: localeContacts });
+        console.log(localeContacts);
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log('Phonebook did update');
+        console.log(prevState);
+        console.log(this.state);
+
+        if (prevState.contacts !== this.state.contacts) {
+            console.log('Contacts did update');
+            localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+        }
+    }
 
     addContact = ({ name, tel }) => {
         const Name = FirstToUpperCase(name);

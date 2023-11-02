@@ -1,5 +1,6 @@
 import React from "react";
 import Section from "../../Section";
+import Modal from "../Modal";
 
 export default class Images extends React.Component {
     render() {
@@ -11,6 +12,8 @@ export default class Images extends React.Component {
                 <Section title='ImageGallery'>
                     Imagegallery
                 </Section>
+                <Modal />
+
             </div>
         )
     }

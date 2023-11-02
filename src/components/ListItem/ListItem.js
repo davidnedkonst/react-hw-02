@@ -1,12 +1,16 @@
+import React from "react";
 import FirstToUpperCase from "../../utils/FirstToUpperCase";
 import PropTypes from 'prop-types';
 
-export default function ListItem({ name, value }) {
-    return (
-        <p>{FirstToUpperCase(name) + ':\t'}
-            <span>{value}</span>
-        </p>
-    );
+export default class ListItem extends React.Component {
+    render() {
+        const { name, value } = this.props;
+        return (
+            <p>{FirstToUpperCase(name) + ':\t'}
+                <span>{value}</span>
+            </p>
+        );
+    };
 };
 
 ListItem.propTypes = {
