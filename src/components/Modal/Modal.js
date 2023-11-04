@@ -25,17 +25,16 @@ const ModalContent = styled.div({
 });
 
 export default class Modal extends Component {
-    componentDidMount() {console.log("Modal did mount")};
+    componentDidMount() { console.log("Modal did mount") };
     componentWillUnmount() { console.log("Modal will unmount") };
 
     render() {
         return (
             <ModalBackDrop>
                 <ModalContent>
-                    Modal content
+                    {this.props.children}
                 </ModalContent>
             </ModalBackDrop>
-
         );
     };
 }

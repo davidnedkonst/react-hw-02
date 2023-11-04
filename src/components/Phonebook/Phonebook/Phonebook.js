@@ -1,10 +1,10 @@
 import React from "react";
-import Section from "../Section";
+import Section from "../../Section";
 import ContactForm from "../ContactForm";
 import ContactFilter from "../ContactFilter";
 import ContactList from "../ContactList";
-import { FirstToUpperCase, isName, toNumber } from "../../utils";
-import { initialContacts } from "../../constants/initialContacts";
+import { FirstToUpperCase, isName, toNumber } from "../../../utils";
+import { initialContacts } from "../../../constants/initialContacts";
 import { nanoid } from "nanoid";
 
 export default class Phonebook extends React.Component {
@@ -13,24 +13,20 @@ export default class Phonebook extends React.Component {
         filter: '',
     };
 
-    componentDidMount() {
-        console.log('Phonebook did mount');  
-
-        const localeContacts = JSON.parse(localStorage.getItem("contacts"));
-        if (localeContacts.length) this.setState({ contacts: localeContacts });
-        console.log(localeContacts);
-    };
+    // componentDidMount() {
+    //     let localeContacts = [];
+    //     localStorage.setItem("contacts", localeContacts);
+    //     localeContacts = JSON.parse(localStorage.getItem("contacts"));
+    //     console.log(!localeContacts.length);
+    //     if (!localeContacts.length) localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    //     if (localeContacts.length) this.setState({ contacts: localeContacts });
+    // };???????
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('Phonebook did update');
-        console.log(prevState);
-        console.log(this.state);
-
         if (prevState.contacts !== this.state.contacts) {
-            console.log('Contacts did update');
             localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
         }
-    }
+    };
 
     addContact = ({ name, tel }) => {
         const Name = FirstToUpperCase(name);

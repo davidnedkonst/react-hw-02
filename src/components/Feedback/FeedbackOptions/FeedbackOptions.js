@@ -1,4 +1,4 @@
-import FirstToUpperCase from "../../utils/FirstToUpperCase.js";
+import { FirstToUpperCase } from '../../../utils';
 import PropTypes from 'prop-types';
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {

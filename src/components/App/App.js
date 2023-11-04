@@ -1,7 +1,7 @@
 import './App.css';
-// import Feedback from '../Feedback';
-// import Phonebook from '../Phonebook';
-import Images from '../Images/Images';
+// import Feedback from '../Feedback/Feedback';
+import Phonebook from '../Phonebook/Phonebook';
+// import Images from '../Images/Images';
 
 
 export default function App() {
@@ -12,11 +12,11 @@ export default function App() {
       {/* <h2>1. Component Feedback</h2>
       <Feedback /> */}
 
-      {/* <h2>2. Phonebook</h2>
-      <Phonebook /> */}
+      <h2>2. Phonebook</h2>
+      <Phonebook />
 
-      <h2>3. Images</h2>
-      <Images/>
+      {/* <h2>3. Images</h2>
+      <Images/> */}
     </div>
   );
 };
