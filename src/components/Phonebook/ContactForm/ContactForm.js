@@ -1,5 +1,5 @@
 import React from "react";
-import FormError from "../../FormError";
+import FormError from "../FormError";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';

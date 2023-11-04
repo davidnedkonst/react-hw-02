@@ -1,5 +1,5 @@
 import { ErrorMessage } from "formik";
-import ErrorText from "../ErrorText";
+import ErrorText from "../../ErrorText";
 
 const FormError = ({ name }) => {
     return (
