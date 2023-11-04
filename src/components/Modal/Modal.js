@@ -1,40 +1,23 @@
 import React, { Component } from "react";
-import styled from "@emotion/styled";
+import { createPortal } from "react-dom";
 
-const ModalBackDrop = styled.div({
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-});
+import { ModalBackDrop } from "./ModalBackdrop";
+import { ModalContent } from "./ModalContent";
 
-const ModalContent = styled.div({
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    minHeight: "300px",
-    maxWidth: "600px",
-    width: "100%",
-    padding: "12px",
-    backgroundColor: "#ffff",
-    borderRadius: "3px",
-    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-});
+const modalRoot = document.getElementById('modal-root');
 
 export default class Modal extends Component {
     componentDidMount() { console.log("Modal did mount") };
     componentWillUnmount() { console.log("Modal will unmount") };
 
     render() {
-        return (
+        return createPortal(
             <ModalBackDrop>
                 <ModalContent>
                     {this.props.children}
                 </ModalContent>
-            </ModalBackDrop>
+            </ModalBackDrop>,
+            modalRoot
         );
     };
 }

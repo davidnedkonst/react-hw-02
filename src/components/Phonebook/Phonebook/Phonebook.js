@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Section from "../../Section";
 import ContactForm from "../ContactForm";
 import ContactFilter from "../ContactFilter";
@@ -7,24 +7,25 @@ import { FirstToUpperCase, isName, toNumber } from "../../../utils";
 import { initialContacts } from "../../../constants/initialContacts";
 import { nanoid } from "nanoid";
 
-export default class Phonebook extends React.Component {
+export default class Phonebook extends Component {
     state = {
         contacts: [...initialContacts],
         filter: '',
     };
 
-    // componentDidMount() {
-    //     let localeContacts = [];
-    //     localStorage.setItem("contacts", localeContacts);
-    //     localeContacts = JSON.parse(localStorage.getItem("contacts"));
-    //     console.log(!localeContacts.length);
-    //     if (!localeContacts.length) localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    //     if (localeContacts.length) this.setState({ contacts: localeContacts });
-    // };???????
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.contacts !== this.state.contacts) {
+    componentDidMount() {
+        const localeContacts = JSON.parse(localStorage.getItem("contacts"));
+        if (!localeContacts) {
             localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+            return;
+        }
+        if (localeContacts) this.setState({ contacts: localeContacts });
+    };
+
+    componentDidUpdate(prevProps, { contacts }) {
+        const newContacts = this.state.contacts;
+        if (contacts !== newContacts) {
+            localStorage.setItem("contacts", JSON.stringify(newContacts));
         }
     };
 
