@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Section from "../../Section";
+import Modal from "../../Modal";
 import ContactForm from "../ContactForm";
 import ContactFilter from "../ContactFilter";
 import ContactList from "../ContactList";
@@ -52,8 +53,8 @@ export default class Phonebook extends Component {
         ))
     };
 
-    onContactFilterChange = event => {
-        const { value } = event.target;
+    onContactFilterChange = ({target}) => {
+        const { value } = target;
         this.setState(
             { filter: value.toLowerCase() }
         );
@@ -80,7 +81,10 @@ export default class Phonebook extends Component {
         return (
             <div>
                 <Section title='ContactForm'>
-                    <ContactForm onSubmit={this.addContact} />
+                    <Modal>
+                        <ContactForm onSubmit={this.addContact} />
+                    </Modal>
+                    
                 </Section>
                 <Section title='Filter'>
                     <ContactFilter

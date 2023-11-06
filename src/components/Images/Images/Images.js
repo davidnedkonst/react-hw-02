@@ -6,19 +6,11 @@ export default class Images extends React.Component {
     state = { showModal: false };
 
     toggleModal = () => {
-        this.setState(prevState => ({ showModal: !prevState.showModal }));
-    };
-
-    showModal = () => {
-        return (
-            this.state.showModal &&
-            <Modal>
-                <Section title='Modal'>
-                    Modal content
-                    <button type="button" onClick={this.toggleModal}>Close modal</button>
-                </Section>
-            </Modal>
-        );
+        console.log('toggleModal() run.');
+        this.setState(({ showModal }) => {
+            console.log('setState() run');
+            return ({ showModal: !showModal });
+        });
     };
 
     render() {
@@ -32,7 +24,15 @@ export default class Images extends React.Component {
                 </Section>
                 <Section title='Modal test'>
                     <button type="button" onClick={this.toggleModal}>Open modal</button>
-                    {this.showModal()}
+                    {
+                        this.state.showModal &&
+                        <Modal onClose={this.toggleModal}>
+                            <Section title='Modal'>
+                                Modal content
+                                <button type="button" onClick={this.toggleModal}>Close modal</button>
+                            </Section>
+                        </Modal>
+                    }
                 </Section>
             </div>
         )

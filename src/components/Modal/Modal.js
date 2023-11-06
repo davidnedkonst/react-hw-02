@@ -7,12 +7,25 @@ import { ModalContent } from "./ModalContent";
 const modalRoot = document.getElementById('modal-root');
 
 export default class Modal extends Component {
-    componentDidMount() { console.log("Modal did mount") };
-    componentWillUnmount() { console.log("Modal will unmount") };
+    handleKeyDown = ({ code }) => {
+        if (code === 'Escape') this.props.onClose();
+    };
+
+    handleBackdropClick = ({ target, currentTarget }) => {
+        if (target === currentTarget) this.props.onClose();
+    };
+
+    componentDidMount() {
+       window.addEventListener('keydown', this.handleKeyDown);
+    };
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleKeyDown);
+    };
 
     render() {
         return createPortal(
-            <ModalBackDrop>
+            <ModalBackDrop onClick={this.handleBackdropClick}>
                 <ModalContent>
                     {this.props.children}
                 </ModalContent>
@@ -20,4 +33,4 @@ export default class Modal extends Component {
             modalRoot
         );
     };
-}
+};
