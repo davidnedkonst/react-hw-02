@@ -80,18 +80,24 @@ export default class Phonebook extends Component {
 
         return (
             <div>
+                <h2>Phonebook</h2>
+
                 <Section title='ContactForm'>
-                    <Modal>
+                    <Modal
+                        openButtonText="Add contact"
+                        closeButtonText="Close"
+                    >
                         <ContactForm onSubmit={this.addContact} />
                     </Modal>
-                    
                 </Section>
+
                 <Section title='Filter'>
                     <ContactFilter
                         value={filter}
                         onChange={this.onContactFilterChange}
                     />
                 </Section>
+
                 <Section title='Contacts'>
                     <ContactList
                         contacts={filterContacts}

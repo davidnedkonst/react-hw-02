@@ -24,10 +24,12 @@ export default class ModalWindow extends Component {
     };
 
     render() {
+        const { children } = this.props;
+
         return createPortal(
             <ModalBackDrop onClick={this.handleBackdropClick}>
                 <ModalContent>
-                    {this.props.children}
+                    {children}
                 </ModalContent>
             </ModalBackDrop>,
             modalRoot

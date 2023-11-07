@@ -9,14 +9,17 @@ export default class Modal extends Component {
     };
 
     render() {
+        const { openButtonText, closeButtonText, children } = this.props;
+        const { showModal } = this.state;
+
         return (
             <div>
-                <button type="button" onClick={this.toggleModal}>Open modal</button>
+                <button type="button" onClick={this.toggleModal}>{openButtonText}</button>
                 {
-                    this.state.showModal &&
+                    showModal &&
                     <ModalWindow onClose={this.toggleModal}>
-                        {this.props.children}
-                        <button type="button" onClick={this.toggleModal}>Close modal</button>
+                        {children}
+                        <button type="button" onClick={this.toggleModal}>{closeButtonText}</button>
                     </ModalWindow>
                 }
             </div>

@@ -19,6 +19,8 @@ export default class Feedback extends React.Component {
     render() {
         return (
             <div>
+                <h2>Component Feedback</h2>
+                
                 <Section title={'Please leave feedback'}>
                     <FeedbackOptions
                         options={this.state}

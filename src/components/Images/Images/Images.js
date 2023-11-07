@@ -1,19 +1,26 @@
 import React from "react";
 import Section from "../../Section";
-import Modal from "../../Modal/Modal";
+import Modal from "../../Modal";
 
 export default class Images extends React.Component {
     render() {
         return (
             <div>
+                <h2>Images</h2>
+
                 <Section title='Searchbar'>
                     Searchbar
                 </Section>
+
                 <Section title='ImageGallery'>
                     ImageGallery
                 </Section>
+
                 <Section title='Modal test'>
-                    <Modal>
+                    <Modal
+                        openButtonText="Open"
+                        closeButtonText="Close"
+                    >
                         <Section title='Modal'>
                             Modal content
                         </Section>
