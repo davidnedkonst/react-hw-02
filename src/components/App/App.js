@@ -1,7 +1,8 @@
 import './App.css';
 // import Feedback from '../Feedback';
-import Phonebook from '../Phonebook';
-import Images from '../Images';
+// import Phonebook from '../Phonebook';
+import PlayerApp from '../PlayerApp';
+// import Images from '../Images';
 
 
 export default function App() {
@@ -11,9 +12,11 @@ export default function App() {
 
       {/* <Feedback /> */}
 
-      <Phonebook />
+      {/* <Phonebook /> */}
 
-      <Images/>
+      <PlayerApp />
+
+      {/* <Images/> */}
     </div>
   );
 };

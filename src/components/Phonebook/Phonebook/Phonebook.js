@@ -5,7 +5,7 @@ import ContactForm from "../ContactForm";
 import ContactFilter from "../ContactFilter";
 import ContactList from "../ContactList";
 import { FirstToUpperCase, isName, toNumber } from "../../../utils";
-import { initialContacts } from "../../../constants/initialContacts";
+import initialContacts from "../../../constants/initialContacts.json";
 import { nanoid } from "nanoid";
 
 export default class Phonebook extends Component {
