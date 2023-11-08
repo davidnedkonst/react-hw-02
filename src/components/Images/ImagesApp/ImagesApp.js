@@ -2,7 +2,7 @@ import React from "react";
 import Section from "../../Section";
 import Modal from "../../Modal";
 
-export default class Images extends React.Component {
+export default class ImagesApp extends React.Component {
     render() {
         return (
             <div>

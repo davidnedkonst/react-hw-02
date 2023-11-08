@@ -3,7 +3,7 @@ import './App.css';
 // import Phonebook from '../Phonebook';
 // import PlayerApp from '../PlayerApp';
 import ReaderApp from '../ReaderApp';
-// import Images from '../Images';
+// import ImagesApp from '../Images';
 
 
 export default function App() {
