@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Section from "../Section";
 import VideoList from "./VideList";
+import Player from "./Player";
 
 import videos from "../../constants/videos.json";
 
 export default class PlayerApp extends Component {
-    state = { selectedVideo: "", };
+    state = { selectedVideo: null, };
 
     selectVideo = (link) => {
         console.log("Select video: ", link);
@@ -20,18 +21,13 @@ export default class PlayerApp extends Component {
             <div>
                 <h2>PlayerApp</h2>
 
-                <Section title="Video list">
-                    {selectedVideo && <h4>{title}</h4>}
-                    <VideoList
-                        data={videos}
-                        select={this.selectVideo}
-                    />
-                </Section>
+                {selectedVideo && <h4>{title}</h4>}
+                <VideoList
+                    data={videos}
+                    select={this.selectVideo}
+                />
 
-                <Section title="Player">
-                    Player
-                </Section>
-
+                <Player url={selectedVideo} />
             </div>
         );
     };
