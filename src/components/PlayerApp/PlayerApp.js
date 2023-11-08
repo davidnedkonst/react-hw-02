@@ -18,9 +18,7 @@ export default class PlayerApp extends Component {
         const title = `Selected video: ${selectedVideo}`;
 
         return (
-            <div>
-                <h2>PlayerApp</h2>
-
+            <Section title="PlayerApp">
                 {selectedVideo && <h4>{title}</h4>}
                 <VideoList
                     data={videos}
@@ -28,7 +26,7 @@ export default class PlayerApp extends Component {
                 />
 
                 <Player url={selectedVideo} />
-            </div>
+            </Section>
         );
     };
 };
