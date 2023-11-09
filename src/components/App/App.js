@@ -3,6 +3,7 @@ import './App.css';
 // import Phonebook from '../Phonebook';
 // import PlayerApp from '../PlayerApp';
 import ReaderApp from '../ReaderApp';
+import publications from "../../constants/publications.json";
 // import ImagesApp from '../Images';
 
 
@@ -17,7 +18,7 @@ export default function App() {
 
       {/* <PlayerApp /> */}
 
-      <ReaderApp/>
+      <ReaderApp items={publications} />
 
       {/* <Images/> */}
     </div>

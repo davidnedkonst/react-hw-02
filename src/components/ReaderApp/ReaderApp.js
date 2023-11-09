@@ -1,53 +1,63 @@
 import React, { Component } from "react";
 import Section from "../Section";
-import publications from "../../constants/publications.json";
 
 export default class ReaderApp extends Component {
-    state = { currentId: 0 };
+    state = { currentIndex: null };
+
+    changeIndex = (value) => {
+        this.setState(({ currentIndex }) => ({ currentIndex: currentIndex + value }));
+    };
 
     onInc = () => {
-        if (this.state.currentId < publications.length) {
-            this.setState(({ currentId }) => ({ currentId: currentId + 1 }));
+        if (this.state.currentIndex < this.props.items.length - 1) {
+            this.changeIndex(1);
         }
     };
 
     onDecr = () => {
-        if (this.state.currentId > 1) {
-            this.setState(({ currentId }) => ({ currentId: currentId - 1 }));
+        if (this.state.currentIndex > 0) {
+            this.changeIndex(-1);
         }
     };
 
     render() {
+        const currentItem = this.props.items[this.state.currentIndex];
+        const length = this.props.items.length;
+        const { currentIndex } = this.state;
+
         return (
             <Section title="Reader">
                 <div>
                     <button
                         type="button"
-                        onClick={this.onInc}
-                        disabled={this.state.currentId === publications.length}
-                    >
-                        Вперед
-                    </button>
-                    <button
-                        type="button"
                         onClick={this.onDecr}
-                        disabled={this.state.currentId === 1}
+                        disabled={currentIndex === 0}
                     >
                         Назад
                     </button>
+
+                    <button
+                        type="button"
+                        onClick={this.onInc}
+                        disabled={currentIndex === length - 1}
+                    >
+                        Вперед
+                    </button>
                 </div>
-
+                <p>
+                    {`${currentIndex + 1} / ${length}`}
+                </p>
                 {
-                    this.state.currentId && <p>
-                        {`${this.state.currentId} / ${publications.length}`}
-                    </p>
+                    {/* currentIndex !== null && */}
+                    
                 }
-
+                <article>
+                    <h2>{currentItem.title}</h2>
+                    <p>{currentItem.text}</p>
+                </article>
                 {
-                    this.state.currentId && <article>
-                        <h2>{publications[this.state.currentId - 1].title}</h2>
-                        <p>{publications[this.state.currentId - 1].text}</p>
-                    </article>
+                    {/* currentIndex !== null && */}
+                    
                 }
             </Section>
         );
