@@ -18,7 +18,9 @@ export default function App() {
 
       {/* <PlayerApp /> */}
 
-      <ReaderApp items={publications} />
+      <ReaderApp
+        items={publications}
+      />
 
       {/* <Images/> */}
     </div>

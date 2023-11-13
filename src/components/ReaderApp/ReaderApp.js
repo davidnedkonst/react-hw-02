@@ -1,64 +1,62 @@
 import React, { Component } from "react";
 import Section from "../Section";
+import Controls from "./Controls";
+import Progress from "./Progress";
+import Publication from "./Publication";
+
+const LS_READER_ID = "reader_publication_id";
 
 export default class ReaderApp extends Component {
-    state = { currentIndex: null };
+    state = { index: 0 };
+
+    componentDidMount() {
+        const ls_index = localStorage.getItem(LS_READER_ID);
+        if (ls_index) this.setState({ index: Number(ls_index) });
+    };
+
+    componentDidUpdate(_, { index }) {
+        const newIndex = this.state.index;
+        if (index !== newIndex) {
+            localStorage.setItem(LS_READER_ID, newIndex);
+        };
+    };
 
     changeIndex = (value) => {
-        this.setState(({ currentIndex }) => ({ currentIndex: currentIndex + value }));
-    };
-
-    onInc = () => {
-        if (this.state.currentIndex < this.props.items.length - 1) {
-            this.changeIndex(1);
+        const { index } = this.state;
+        const length = this.props.items.length;
+        if (value === -1 && index === 0) {
+            this.setState(({ index }) => ({ index: index + length - 1 }));
+            return;
         }
-    };
-
-    onDecr = () => {
-        if (this.state.currentIndex > 0) {
-            this.changeIndex(-1);
-        }
+        this.setState(({ index }) => ({ index: index + value }));
     };
 
     render() {
-        const currentItem = this.props.items[this.state.currentIndex];
-        const length = this.props.items.length;
-        const { currentIndex } = this.state;
+        const { index } = this.state;
+        const { items } = this.props;
+        const item = items[index];
+        const length = items.length;
 
         return (
             <Section title="Reader">
                 <div>
-                    <button
-                        type="button"
-                        onClick={this.onDecr}
-                        disabled={currentIndex === 0}
-                    >
-                        Назад
-                    </button>
+                    <Controls
+                        current={index + 1}
+                        total={length}
+                        handleClick={this.changeIndex}
+                    />
 
-                    <button
-                        type="button"
-                        onClick={this.onInc}
-                        disabled={currentIndex === length - 1}
-                    >
-                        Вперед
-                    </button>
+                    <Progress
+                        current={index + 1}
+                        total={length}
+                    />
+
+                    <Publication
+                        id={item.id}
+                        title={item.title}
+                        text={item.text}
+                    />
                 </div>
-                <p>
-                    {`${currentIndex + 1} / ${length}`}
-                </p>
-                {
-                    {/* currentIndex !== null && */}
-                    
-                }
-                <article>
-                    <h2>{currentItem.title}</h2>
-                    <p>{currentItem.text}</p>
-                </article>
-                {
-                    {/* currentIndex !== null && */}
-                    
-                }
             </Section>
         );
     };
