@@ -4,36 +4,57 @@ import Section from "../Section";
 import PokemonForm from "./PokemonForm";
 import PokemonInfo from "./PokemonInfo";
 
+const initState = {
+    pokemon: null,
+    pokemonName: null,
+    error: null,
+    status: "idle",
+};
+
+const status = {};
+
 export default class PokemonApp extends Component {
-    state = { pokemon: null, pokemonName: null, loading: false };
+    state = initState;
 
     handleSubmit = pokemonName => {
-        console.log("Run handleSubmit(). Name = " + pokemonName);
         this.setState({ pokemonName });
+    };
 
-    }
+    componentDidUpdate(prevProps, prevState) {
+        const prevName = prevState.pokemonName;
+        const nextName = this.state.pokemonName;
+        const url = `https://pokeapi.co/api/v2/pokemon/${nextName}`;
+        const errorMsg = `Name ${nextName} not found`;
 
-    componentDidMount() {
-        this.setState({ loading: true });
-        setTimeout(() => {
-            fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-                .then(res => res.json())
-                .then(pokemon => this.setState({ pokemon }))
-                .finally(this.setState({ loading: false }));
-        },
-            1000)
+        if (prevName !== nextName) {
+            this.setState(initState);
+            this.setState({status: "pending"});
+
+            setTimeout(() => {
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        return Promise.reject(new Error(errorMsg));
+                    })
+                    .then(pokemon => this.setState({ pokemon, status: "resolved" }))
+                    .catch(error => this.setState({ error, status: "rejected" }))
+            },
+                1000)
+        };
     };
 
     render() {
+        const { pokemon, error, status } = this.state;
+
         return (
             <Section title="P">
                 <PokemonForm onSubmit={this.handleSubmit} />
                 {/* <PokemonFormik /> */}
-                {this.state.loading && <h3>Идет загрузка...</h3>}
-                {this.state.pokemon &&
-                    <PokemonInfo info={this.state.pokemon} />
-                }
-                
+                {status === "rejected" && <h3>{error.message}</h3>}
+                {status === "pending" && <h3>Идет загрузка...</h3>}
+                {status === "resolved" && <PokemonInfo info={pokemon} />}
             </Section>
         );
     };

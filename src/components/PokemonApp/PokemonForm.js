@@ -10,11 +10,12 @@ export default class PokemonForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        if (this.state.pokemonName.trim() === "") {
+        const name = this.state.pokemonName.trim();
+        if (name === "") {
             alert("Enter name!");
             return;
         }
-        this.props.onSubmit(this.state.pokemonName);
+        this.props.onSubmit(name);
         this.setState({ pokemonName: "" })
     };
 
@@ -22,7 +23,7 @@ export default class PokemonForm extends Component {
         return (
             <Section title="P Form">
                 <div>
-                    <form autoComplete="off" onSubmit={this.handleSubmit}>
+                    <form autoComplete="on" onSubmit={this.handleSubmit}>
                         <input
                             name="pokemonName"
                             type="text"
