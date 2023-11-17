@@ -12,7 +12,7 @@ const validationSchema = Yup.object().shape({
         .required('Name required'),
 });
 
-export default class PokemonForm extends Component {
+export default class PokemonFormik extends Component {
     onSubmit = (values, { resetForm }) => {
         this.props.onSubmit(values);
         resetForm();
@@ -20,7 +20,7 @@ export default class PokemonForm extends Component {
 
     render() {
         return (
-            <Section title="PokemonFormik">
+            <Section title="P Formik">
                 <div>
                     <Formik
                         initialValues={initialValues}
@@ -28,7 +28,7 @@ export default class PokemonForm extends Component {
                         onSubmit={this.onSubmit}
                     >
                         <Form autoComplete="off">
-                            <Field name="name" placeholder="Pokemon Name" />
+                            <Field name="name" placeholder="P Name" />
                             <button type="submit">Search</button>
                         </Form>
                     </Formik>

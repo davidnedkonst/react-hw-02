@@ -5,19 +5,24 @@ export default class PokemonForm extends Component {
     state = { pokemonName: "" };
 
     handleNameChange = event => {
-        console.log(event);
+        this.setState({ pokemonName: event.currentTarget.value.toLowerCase() })
     };
-    
+
     handleSubmit = event => {
         event.preventDefault();
-        console.log(event);
+        if (this.state.pokemonName.trim() === "") {
+            alert("Enter name!");
+            return;
+        }
+        this.props.onSubmit(this.state.pokemonName);
+        this.setState({ pokemonName: "" })
     };
 
     render() {
         return (
-            <Section title="PokemonForm">
+            <Section title="P Form">
                 <div>
-                    <form autoComplete="off" onSubmit={this.onSubmit}>
+                    <form autoComplete="off" onSubmit={this.handleSubmit}>
                         <input
                             name="pokemonName"
                             type="text"

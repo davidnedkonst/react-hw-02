@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import Section from "../Section";
-import PokemonFormik from "./PokemonFormik";
+// import PokemonFormik from "./PokemonFormik";
 import PokemonForm from "./PokemonForm";
+import PokemonInfo from "./PokemonInfo";
 
 export default class PokemonApp extends Component {
-    state = { pokemon: null, loading: false };
+    state = { pokemon: null, pokemonName: null, loading: false };
+
+    handleSubmit = pokemonName => {
+        console.log("Run handleSubmit(). Name = " + pokemonName);
+        this.setState({ pokemonName });
+
+    }
 
     componentDidMount() {
         this.setState({ loading: true });
@@ -19,13 +26,14 @@ export default class PokemonApp extends Component {
 
     render() {
         return (
-            <Section title="Pokemon">
-                <PokemonForm />
-                <PokemonFormik />
+            <Section title="P">
+                <PokemonForm onSubmit={this.handleSubmit} />
+                {/* <PokemonFormik /> */}
                 {this.state.loading && <h3>Идет загрузка...</h3>}
                 {this.state.pokemon &&
-                    <div>{this.state.pokemon.name}</div>
+                    <PokemonInfo info={this.state.pokemon} />
                 }
+                
             </Section>
         );
     };
