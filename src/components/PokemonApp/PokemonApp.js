@@ -3,15 +3,23 @@ import Section from "../Section";
 // import PokemonFormik from "./PokemonFormik";
 import PokemonForm from "./PokemonForm";
 import PokemonInfo from "./PokemonInfo";
+import PokemonErrorMsg from "./PokemonErrorMsg";
+import PokemonLoadMsg from "./PokemonLoadMsg";
+import fetchPokemon from "./fetchPokemon";
+
+const enumStatus = {
+    idle: 1,
+    pending: 2,
+    rejected: 3,
+    resolved: 4,
+};
 
 const initState = {
     pokemon: null,
     pokemonName: null,
     error: null,
-    status: "idle",
+    status: enumStatus.idle,
 };
-
-const status = {};
 
 export default class PokemonApp extends Component {
     state = initState;
@@ -23,38 +31,42 @@ export default class PokemonApp extends Component {
     componentDidUpdate(prevProps, prevState) {
         const prevName = prevState.pokemonName;
         const nextName = this.state.pokemonName;
-        const url = `https://pokeapi.co/api/v2/pokemon/${nextName}`;
-        const errorMsg = `Name ${nextName} not found`;
+        // const url = "https://pokeapi.co/api/v2/pokemon/" + nextName;
+        // const errorMsg = `Name ${nextName} not found`;
 
         if (prevName !== nextName) {
-            this.setState(initState);
-            this.setState({status: "pending"});
+            this.setState({ status: enumStatus.pending });
 
-            setTimeout(() => {
-                fetch(url)
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        return Promise.reject(new Error(errorMsg));
-                    })
-                    .then(pokemon => this.setState({ pokemon, status: "resolved" }))
-                    .catch(error => this.setState({ error, status: "rejected" }))
-            },
-                1000)
+            setTimeout(
+                () => {
+                    fetchPokemon(nextName)
+                        .then(pokemon => this.setState({ pokemon, status: enumStatus.resolved }))
+                        .catch(error => this.setState({ error, status: enumStatus.rejected }))
+                }, 1000
+            );
         };
     };
 
     render() {
         const { pokemon, error, status } = this.state;
+        const loadMsg = "Идет загрузка...";
 
         return (
             <Section title="P">
                 <PokemonForm onSubmit={this.handleSubmit} />
                 {/* <PokemonFormik /> */}
-                {status === "rejected" && <h3>{error.message}</h3>}
-                {status === "pending" && <h3>Идет загрузка...</h3>}
-                {status === "resolved" && <PokemonInfo info={pokemon} />}
+                {
+                    status === enumStatus.rejected &&
+                    <PokemonErrorMsg msg={error.message} />
+                }
+                {
+                    status === enumStatus.pending &&
+                    <PokemonLoadMsg msg={loadMsg} />
+                }
+                {
+                    status === enumStatus.resolved &&
+                    <PokemonInfo info={pokemon} />
+                }
             </Section>
         );
     };

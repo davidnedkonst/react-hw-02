@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Section from "../Section";
-import VideoList from "./VideList";
+import VideoList from "./VideoList";
 import Player from "./Player";
 
 import videos from "../../constants/videos.json";

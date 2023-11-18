@@ -3,12 +3,24 @@ import Section from "../Section";
 
 export default class PokemonInfo extends Component {
     render() {
-        const { name } = this.props.info;
+        const { name, sprites, stats, weight } = this.props.info;
 
         return (
-            <Section title="P Info">
+            <Section title="Pokemon Info">
                 <h3>{name}</h3>
-                <img src={this.props.info.sprites.other["official-artwork"].front_default} alt="Pokemon image" width="300px" />
+                <img
+                    src={sprites.other["official-artwork"].front_default}
+                    alt="Pokemon image"
+                    width="160px"
+                />
+                <ul>{
+                    stats.map(
+                        ({stat, base_stat}) => <li key={stat.name}>
+                            {`${stat.name}: ${base_stat}`}
+                        </li>
+                    )
+                }</ul>
+                <>{`Weight: ${weight}`}</>
             </Section>
         );
     };
