@@ -31,8 +31,6 @@ export default class PokemonApp extends Component {
     componentDidUpdate(prevProps, prevState) {
         const prevName = prevState.pokemonName;
         const nextName = this.state.pokemonName;
-        // const url = "https://pokeapi.co/api/v2/pokemon/" + nextName;
-        // const errorMsg = `Name ${nextName} not found`;
 
         if (prevName !== nextName) {
             this.setState({ status: enumStatus.pending });
