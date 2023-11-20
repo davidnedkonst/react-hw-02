@@ -3,8 +3,8 @@ import './App.css';
 // import Phonebook from '../Phonebook';
 // import PlayerApp from '../PlayerApp';
 // import ReaderApp from '../ReaderApp';
-import PokemonApp from '../PokemonApp';
-// import ImagesApp from '../Images';
+// import PokemonApp from '../PokemonApp';
+import ImagesApp from '../Images';
 
 // import publications from "../../constants/publications.json";
 
@@ -24,9 +24,9 @@ export default function App() {
         items={publications}
       /> */}
 
-      <PokemonApp />
+      {/* <PokemonApp /> */}
 
-      {/* <Images/> */}
+      <ImagesApp/>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Section from "../Section";
-// import PokemonFormik from "./PokemonFormik";
 import PokemonForm from "./PokemonForm";
 import PokemonInfo from "./PokemonInfo";
 import PokemonErrorMsg from "./PokemonErrorMsg";
@@ -52,7 +51,6 @@ export default class PokemonApp extends Component {
         return (
             <Section title="P">
                 <PokemonForm onSubmit={this.handleSubmit} />
-                {/* <PokemonFormik /> */}
                 {
                     status === enumStatus.rejected &&
                     <PokemonErrorMsg msg={error.message} />
