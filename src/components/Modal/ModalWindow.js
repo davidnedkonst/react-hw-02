@@ -16,7 +16,7 @@ export default class ModalWindow extends Component {
     };
 
     componentDidMount() {
-       window.addEventListener('keydown', this.handleKeyDown);
+        window.addEventListener('keydown', this.handleKeyDown);
     };
 
     componentWillUnmount() {
@@ -26,13 +26,14 @@ export default class ModalWindow extends Component {
     render() {
         const { children } = this.props;
 
-        return createPortal(
-            <ModalBackDrop onClick={this.handleBackdropClick}>
+        const jsx = (
+            <ModalBackDrop ModalBackDrop onClick={this.handleBackdropClick} >
                 <ModalContent>
                     {children}
                 </ModalContent>
-            </ModalBackDrop>,
-            modalRoot
+            </ModalBackDrop>
         );
+
+        return createPortal(jsx, modalRoot);
     };
 };

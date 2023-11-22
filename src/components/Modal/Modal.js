@@ -14,7 +14,7 @@ export default class Modal extends Component {
 
         return (
             <div>
-                <button type="button" onClick={this.toggleModal}>{openButtonText}</button>
+                {/* <button type="button" onClick={this.toggleModal}>{openButtonText}</button> */}
                 {
                     showModal &&
                     <ModalWindow onClose={this.toggleModal}>

@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import ImageGalleryItem from "../ImageGalleryItem";
+import css from "./ImageGallery.module.css";
 
-export default class ImageGallery extends Component {
-    render() {
-        return (
-            <ul className="gallery">
-                {/* <!-- Набір <li> із зображеннями --> */}
-            </ul>
-        );
-    };
+export default function ImageGallery ({ images }) {
+    return (
+        <ul className={css.ImageGallery} >
+            {images.hits.map(
+                item => <li key={item.id}><ImageGalleryItem item={item} /></li>
+            )}
+        </ul>
+    );
 };

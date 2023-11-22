@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import css from "./ImageGalleryItem.module.css";
 
-export default class ImageGalleryItem extends Component {
-    render() {
-        return (
-            <li className="gallery-item">
-                <img src="" alt="" />
-            </li>
-        );
-    };
+export default function ImageGalleryItem({ item }) {
+    return (
+        <div className={css.ImageGalleryItem}>
+            <img className={css.ImageGalleryItemImage} src={item.webformatURL} alt={item.tags} />
+        </div>
+    );
 };
