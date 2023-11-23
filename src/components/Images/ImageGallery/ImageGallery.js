@@ -1,12 +1,16 @@
 import ImageGalleryItem from "../ImageGalleryItem";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery ({ images }) {
+export default function ImageGallery({ images, onImageClick }) {
     return (
-        <ul className={css.ImageGallery} >
-            {images.hits.map(
-                item => <li key={item.id}><ImageGalleryItem item={item} /></li>
-            )}
-        </ul>
+        <div className={css.ImageGallery} >{
+            images.map(item =>
+                <ImageGalleryItem
+                    key={item.id}
+                    item={item}
+                    onImageClick={onImageClick}
+                />
+            )
+        }</div>
     );
 };

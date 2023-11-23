@@ -27,7 +27,7 @@ export default class ModalWindow extends Component {
         const { children } = this.props;
 
         const jsx = (
-            <ModalBackDrop ModalBackDrop onClick={this.handleBackdropClick} >
+            <ModalBackDrop onClick={this.handleBackdropClick} >
                 <ModalContent>
                     {children}
                 </ModalContent>

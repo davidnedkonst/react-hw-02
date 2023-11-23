@@ -4,12 +4,18 @@ import ModalWindow from "./ModalWindow";
 export default class Modal extends Component {
     state = { showModal: false };
 
-    toggleModal = () => {
-        this.setState(({ showModal }) => ({ showModal: !showModal }));
+    closeModal = () => {
+        this.setState({ showModal: false });
+    };
+
+    componentDidMount(prevProps, prevState) {
+        if (prevProps.showModal !== this.props.showModal) {
+            this.setState({ showModal: this.props.showModal });
+        }
     };
 
     render() {
-        const { openButtonText, closeButtonText, children } = this.props;
+        const { closeButtonText, children } = this.props;
         const { showModal } = this.state;
 
         return (
@@ -19,7 +25,7 @@ export default class Modal extends Component {
                     showModal &&
                     <ModalWindow onClose={this.toggleModal}>
                         {children}
-                        <button type="button" onClick={this.toggleModal}>{closeButtonText}</button>
+                        <button type="button" onClick={this.closeModal}>{closeButtonText}</button>
                     </ModalWindow>
                 }
             </div>
